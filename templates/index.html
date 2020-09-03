@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+            <div class="card-body">
+                <i class="fas fa-user-astronaut fa-9x"></i>
+                <h2 class="card-title">{{user_info.displayname}}</h2>
+                <h4>@{{user_info.username}}</h4>
+              <p class="card-text">
+                  <br/>
+                  Following: {{followed_count}}<br/>
+                  Total Tweets: {{tweet_count}}<br/>
+              </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h2>I thought somebody with a twitterclone said something?</h2>
+        {% include template_name %}
+    </div>
+  </div>
+{% endblock %}

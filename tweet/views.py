@@ -1,3 +1,20 @@
 from django.shortcuts import render
+from .forms import AddTweetForm
+from .models import Tweet
 
 # Create your views here.
+
+def addtweet_view(request):
+    if request.method == 'POST':
+        form = AddTweetForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_user = Tweet.objects.create(
+                content=data.get('content'),
+                user=request.user
+            )
+            
+            return HttpResponseRedirect(reverse('home'))
+    form= AddTweetForm()
+    return render(request, 'generic_form.html', {'form':form})
+
