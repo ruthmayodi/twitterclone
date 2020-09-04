@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'twitteruser',
     'tweet',
     'authentication',
+    'notification',
 
 ]
 
