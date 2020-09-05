@@ -20,12 +20,13 @@ from twitteruser import views as userviews
 from tweet import views as tweetviews
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', userviews.index_view, name='home'),
     path('addtweet/', tweetviews.addtweet_view),
-    path('profile/<str:user_username>/', userviews.profile_view),
     path('login/', authviews.login_view),
     path('signup/', authviews.signup_view),
     path('logout/', authviews.logout_view),
-    path('admin/', admin.site.urls),
-    
+    path('<str:user_username>/', userviews.profile_view),
+    path('<str:user_username>/follow/', userviews.follow_view),
+    path('<str:user_username>/unfollow/', userviews.unfollow_view),
 ]

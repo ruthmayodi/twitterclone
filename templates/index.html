@@ -9,8 +9,20 @@
                 <h4>@{{user_info.username}}</h4>
               <p class="card-text">
                   <br/>
+                  {%if request.path == '/'%}
                   Following: {{followed_count}}<br/>
                   Total Tweets: {{tweet_count}}<br/>
+                  {%else%}
+                  {%if request.user.is_authenticated%}
+                  {%ifnotequal request.user user_info%}
+                  {%if user_info in request.user.followed.all%}
+                  <a class="btn btn-danger" href="/{{user_info.username}}/unfollow/">Stop Following</a>
+                  {%else%}
+                  <a class="btn btn-success" href="/{{user_info.username}}/follow/">Follow</a>
+                  {%endif%}
+                  {%endifnotequal%}
+                  {%endif%}
+                  {%endif%}
               </p>
             </div>
         </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import TwitterUser
 from tweet.helpers import get_tweets, user_tweets, get_user_tweets
@@ -38,4 +38,18 @@ def profile_view(request, user_username):
         'notif_count': count_notify,
         'template_name': 'tweets.html'
     })
+
+@login_required
+def follow_view(request, user_username):
+    user = TwitterUser.objects.get(username=user_username)
+    request.user.followed.add(user)
+    return redirect('/' + user.username + '/')
+
+
+@login_required
+def unfollow_view(request, user_username):
+    user = TwitterUser.objects.get(username=user_username)
+    request.user.followed.remove(user)
+    return redirect('/' + user.username + '/')
+
 
