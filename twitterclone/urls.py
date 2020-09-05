@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', userviews.index_view, name='home'),
     path('addtweet/', tweetviews.addtweet_view),
+    path('notifications/<str:user_username>/', userviews.notification_view),
+    path('tweet_detail/<int:tweet_id>/', userviews.tweet_view),
     path('login/', authviews.login_view),
     path('signup/', authviews.signup_view),
     path('logout/', authviews.logout_view),

@@ -5,7 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">TwitterClone</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +33,7 @@
               <a href="/addtweet/" class="btn btn-primary"><i class="far fa-plus-square"></i> Tweet!</a>
             </li>
             <li class="nav-item" style="padding-right: 5px;">
-              <a href="/notifications/{{user_info.id}}/" class="btn btn-primary"><i class="far fa-bell"></i> Notifications({{notif_count}})</a>
+              <a href="/notifications/{{user_info.username}}/" class="btn btn-primary"><i class="far fa-bell"></i> Notifications({{notif_count}})</a>
             </li>
             <li class="nav-item" style="padding-right: 5px;">
               <a href="/{{user_info.username}}/" class="btn btn-primary"><i class="far fa-user-circle"></i> Profile</a>

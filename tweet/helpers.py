@@ -35,3 +35,7 @@ def parse_tweet(tweets):
             )
             return True
     return False
+
+
+def get_tweet(tweet_id):
+    return Tweet.objects.filter(id=tweet_id)
