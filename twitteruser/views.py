@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import TwitterUser
 from tweet.helpers import get_tweets, user_tweets, get_user_tweets, get_tweet
 from notification.helpers import count_notifications, get_notifications
+from django.views.generic import TemplateView
 
 
 # Create your views here.
@@ -23,21 +24,25 @@ def index_view(request):
         'template_name': 'tweets.html'
     })
 
-def profile_view(request, user_username):
-    user_info=TwitterUser.objects.get(username=user_username)
-    followed_count = user_info.followed.all().count()
-    tweets = get_user_tweets(user_info)
-    count_tweet = user_tweets(user_info)
-    count_notify = count_notifications(user_info)
+
+class ProfileView(TemplateView):
+    def get(self, request, user_username):
+        user_info=TwitterUser.objects.get(username=user_username)
+        followed_count = user_info.followed.all().count()
+        tweets = get_user_tweets(user_info)
+        count_tweet = user_tweets(user_info)
+        count_notify = count_notifications(user_info)
     
-    return render(request, 'index.html', {
-        'user_info': user_info,
-        'followed_count': followed_count,
-        'tweets': tweets,
-        'tweet_count': count_tweet, 
-        'notif_count': count_notify,
-        'template_name': 'tweets.html'
+        return render(request, 'index.html', {
+            'user_info': user_info,
+            'followed_count': followed_count,
+            'tweets': tweets,
+            'tweet_count': count_tweet, 
+            'notif_count': count_notify,
+            'template_name': 'tweets.html'
     })
+
+
 
 @login_required
 def follow_view(request, user_username):
